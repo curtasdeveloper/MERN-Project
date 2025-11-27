@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "backend server for MERN stack",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtasdeveloper/MERN-Project.git"
+  },
+  "author": "curtasdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curtasdeveloper/MERN-Project/issues"
+  },
+  "homepage": "https://github.com/curtasdeveloper/MERN-Project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.0",
+    "nodemon": "^3.1.11"
+  }
+}
