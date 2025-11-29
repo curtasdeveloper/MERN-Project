@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import mongoose from 'mongoose';
 import { corsConfig } from './config/cors.config.js';
 import 'dotenv/config';
-const app = express();
 
+const app = express();
 const port = process.env.PORT || 3000;
-const hostname = process.env.HOSTNAME || "localhost"
+const hostname = process.env.HOSTNAME || "localhost";
 
 // MIDDLEWARE
 app.use(cors(corsConfig))
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res)=> {
     res.send({
-        message: "Hello world from backend!",
+        message: "Hello World from backend!",
         status: 200,
     })
 })
