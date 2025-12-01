@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-const API_BASE = "http://127.0.0.1:3000/"
+const API_BASE = "http://127.0.0.1:3000"
 
 function Message(text) {
   return <h1 className="font-bold italic">{text}</h1>
@@ -11,7 +11,7 @@ function App() {
   const [text, setText] = useState("")
   const testBackendConnection = async () => {
     try {
-      const response = await fetch(API_BASE)
+      const response = await fetch(`${API_BASE}/api/helloWorld`)
       if (!response.ok) throw new Error("Unsuccessful backend connectivity.")
       const data = await response.json()
       return data.message
