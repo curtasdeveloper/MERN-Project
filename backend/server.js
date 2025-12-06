@@ -14,7 +14,9 @@ app.use(cors(corsConfig))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
+// ROUTES
 app.use('/api', helloWorldRouter)
+
 
 app.listen(port, hostname, () => {
     console.log(`✓ Server running on http://${hostname}:${port}`);

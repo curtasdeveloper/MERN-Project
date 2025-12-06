@@ -11,7 +11,7 @@ function App() {
   const [text, setText] = useState("")
   const testBackendConnection = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/helloWorld`)
+      const response = await fetch(`${API_BASE}/api/hello-world`)
       if (!response.ok) throw new Error("Unsuccessful backend connectivity.")
       const data = await response.json()
       return data.message
@@ -19,7 +19,7 @@ function App() {
       console.log(`Error: ${error.message}`)
     }
   }
-  const handleHelloWorldBtn = () => {
+  const handleHelloWorldBtn = (e) => {
     if (!helloWorldBtn) {
       const newBtnClicked = !helloWorldBtn
       setHelloWorldBtnClicked(newBtnClicked)
@@ -27,12 +27,13 @@ function App() {
       setText(message)
     } else {
       console.log("Hello world button is already clicked.")
+      e.target.className += " border-red-500 border-2"
     }
   }
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <h1 className='italic font-bold'>Hello World from front end!</h1>
+        <h1 className='italic font-bold'>Hello World from frontend!</h1>
         <button className="p-2 border" onClick={handleHelloWorldBtn}>Send hello world.</button>
         { helloWorldBtn && Message(text) }
       </div>
