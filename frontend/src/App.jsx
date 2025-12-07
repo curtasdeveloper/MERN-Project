@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import HelloWorldForm from "./components/forms/HelloWorldForm.jsx";
 
 const API_BASE = "http://127.0.0.1:3000"
 
@@ -36,6 +37,7 @@ function App() {
         <h1 className='italic font-bold'>Hello World from frontend!</h1>
         <button className="p-2 border" onClick={handleHelloWorldBtn}>Send hello world.</button>
         { helloWorldBtn && Message(text) }
+        <HelloWorldForm />
       </div>
     </>
   )
