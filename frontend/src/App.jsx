@@ -1,42 +1,52 @@
 import { useEffect, useRef, useState } from "react"
+import EditIcon from "./assets/edit.svg"
+import DeleteIcon from "./assets/delete.svg"
 import HelloWorldForm from "./components/forms/HelloWorldForm.jsx";
+import { messageServices } from "./services/messagesServices.js";
 
 const API_BASE = "http://127.0.0.1:3000"
 
-function Message(text) {
-  return <h1 className="font-bold italic">{text}</h1>
+function Message({id, text}) {
+  const handleEdit = async () => {
+    console.log(`Editing ${id}`)
+  }
+  const handleDelete = async () => {
+    console.log(`Deleting ${id}`)
+  }
+  return (
+    <li className="flex items-center justify-between gap-2">
+      <span className="font-bold italic">{text}</span>
+      <div className="flex items-center">
+        <img onClick={handleEdit} src={EditIcon} className="size-8"/>
+        <img onClick={handleDelete} src={DeleteIcon} className="size-8"/>    
+      </div>
+    </li>
+  )
 }
 
 function App() {
   const [helloWorldBtn, setHelloWorldBtnClicked] = useState(false);
-  const [text, setText] = useState("")
-  const testBackendConnection = async () => {
-    try {
-      const response = await fetch(`${API_BASE}/api/hello-world`)
-      if (!response.ok) throw new Error("Unsuccessful backend connectivity.")
-      const data = await response.json()
-      return data.message
-    } catch (error) {
-      console.log(`Error: ${error.message}`)
-    }
-  }
-  const handleHelloWorldBtn = (e) => {
+  const [text, setText] = useState([])
+  const handleHelloWorldBtn = async (e) => {
     if (!helloWorldBtn) {
       const newBtnClicked = !helloWorldBtn
       setHelloWorldBtnClicked(newBtnClicked)
-      const message = testBackendConnection();
+      const message = await messageServices.getMessages("hello-world");
       setText(message)
     } else {
       console.log("Hello world button is already clicked.")
       e.target.className += " border-red-500 border-2"
     }
   }
+
   return (
     <>
       <div className="flex flex-col items-center justify-center">
         <h1 className='italic font-bold'>Hello World from frontend!</h1>
-        <button className="p-2 border" onClick={handleHelloWorldBtn}>Send hello world.</button>
-        { helloWorldBtn && Message(text) }
+        <button className="p-2 border" onClick={handleHelloWorldBtn}>Get Messages.</button>
+        <ul>
+          {helloWorldBtn && text.map(({_id, message}) => <Message id={_id} key={_id} text={message}></Message>)}
+        </ul>
         <HelloWorldForm />
       </div>
     </>
