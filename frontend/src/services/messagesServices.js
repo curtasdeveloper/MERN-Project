@@ -13,14 +13,17 @@ export const messageServices = {
             const response = await fetch(request);
             if (!response.ok) throw new Error("Unsuccessfull POST request.")
             const responseData = await response.json()
-            console.log(responseData)
+            return responseData;
         } catch (error) {
             console.log(`Erorr: ${error}`)
         }
     },
     getMessages: async (endpoint) => {
         try {
-            const response = await fetch(`${BASE_API}/api/hello-world`)
+            const request = new Request(`${BASE_API}/api/${endpoint}`, {
+                method: "GET",
+            })
+            const response = await fetch(request)
             if (!response.ok) throw new Error("Unsuccessful backend connectivity.")
             const data = await response.json()
             return data
