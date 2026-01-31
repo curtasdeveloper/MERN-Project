@@ -1,6 +1,7 @@
 const BASE_API = import.meta.env.VITE_SERVER_API;
 
 export const messageServices = {
+
     sendMessage: async (endpoint, data) => {
         try {
             const request = new Request(`${BASE_API}/api/${endpoint}`, {
@@ -18,6 +19,7 @@ export const messageServices = {
             console.log(`Erorr: ${error}`)
         }
     },
+
     getMessages: async (endpoint) => {
         try {
             const request = new Request(`${BASE_API}/api/${endpoint}`, {

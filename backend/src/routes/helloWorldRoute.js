@@ -1,6 +1,6 @@
 import { Router } from "express";
-import sendHelloWorldMessage from "../controllers/helloWorldController.js";
-import postMessage from "../controllers/messageController.js";
+import sendHelloWorldMessage from "../controllers/getMessageController.js";
+import postMessage from "../controllers/postMessageController.js";
 import updateMessage from "../controllers/updateMessageController.js";
 import deleteMessage from "../controllers/deleteMessageController.js";
 

@@ -13,7 +13,6 @@ export default async function updateMessage(req, res) {
             { _id: messageId },
             { $set: { message: message } }
         );
-        console.log(result)
         if (result.matchedCount === 0) {
             return res.status(404).json({  
                 message: "Message not found.",
