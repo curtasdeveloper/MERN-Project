@@ -13,7 +13,7 @@ function HelloWorldForm() {
 
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData)
-        const response = await messageServices.sendMessage("hello-world", data)
+        const response = await messageServices.postMessage("hello-world", data)
         if (response.success) {
             setMessage("")
         } else {
@@ -24,12 +24,12 @@ function HelloWorldForm() {
         
     }
     return(  
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2 p-2 border-2">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2 p-2 border">
             <div className="flex gap-2">
                 <label htmlFor="message">Message:</label>
-                <input className="border-2 px-1" required value={message} onChange={handleInputChange} type="text" name="message" id="message" />
+                <input className="border px-1" required value={message} onChange={handleInputChange} type="text" name="message" id="message" />
             </div>
-            <button disabled={message.length === 0 ? true: false} className="py-2 px-4 border-2" type="submit">Send</button>
+            <button disabled={message.length === 0 ? true: false} className="py-2 px-4 border" type="submit">Send</button>
         </form>
     )
 }

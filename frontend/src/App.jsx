@@ -1,33 +1,7 @@
-import { useEffect, useRef, useState } from "react"
-import EditIcon from "./assets/edit.svg"
-import DeleteIcon from "./assets/delete.svg"
-import HelloWorldForm from "./components/forms/HelloWorldForm.jsx";
+import { useState } from "react"
+import SendMessageForm from "./components/forms/SendMessageForm.jsx";
 import { messageServices } from "./services/messagesServices.js";
-import EditMessageModal from "./components/modals/EditMessageModal.jsx";
-
-function Message({id, text}) {
-  const [ isEditing, setIsEditing] = useState(false);
-  const [ isDeleting, setIsDeleting] = useState(false);
-
-  const handleEdit = async () => {
-    const open = !isEditing;
-    setIsEditing(open)
-    console.log(`Editing ${id}`)
-  }
-  const handleDelete = async () => {
-    console.log(`Deleting ${id}`)
-  }
-  return (
-    <li className="flex items-center justify-between gap-2">
-      <span className="font-bold italic">{text}</span>
-      <div className="flex items-center">
-        <img onClick={handleEdit} src={EditIcon} className="size-8"/>
-        <img onClick={handleDelete} src={DeleteIcon} className="size-8"/>    
-      </div>
-      <EditMessageModal isOpen={isEditing} toEdit={id}/>
-    </li>
-  )
-}
+import Message from "../src/components/main-component/Message.jsx";
 
 function App() {
   const [helloWorldBtn, setHelloWorldBtnClicked] = useState(false);
@@ -46,13 +20,15 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-2">
-        <h1 className='italic font-bold'>Hello World from frontend!</h1>
-        <button className="p-2 border" onClick={handleHelloWorldBtn}>Get Messages.</button>
-        <ul className={"relative" + text.length > 0 ? "border-2 p-2": "border-none"}>
-          {helloWorldBtn && text.map(({_id, message}) => <Message id={_id} key={_id} text={message}></Message>)}
-        </ul>
-        <HelloWorldForm />
+      <div className="w-screen h-screen b flex items-center justify-center gap-2">
+        <div className="px-10 py-12 bg-fuchsia-50 flex flex-col items-center justify-center">
+          <h1 className='italic font-bold'>Hello World from frontend!</h1>
+          <button className="p-2 border mb-2" onClick={handleHelloWorldBtn}>Get Messages.</button>
+          <ul className={"relative" + text.length > 0 ? "border-2 p-2": "border-none"}>
+            {helloWorldBtn && text.map(({_id, message}) => <Message id={_id} key={_id} text={message}></Message>)}
+          </ul>
+          <SendMessageForm />
+        </div>
       </div>
     </>
   )
