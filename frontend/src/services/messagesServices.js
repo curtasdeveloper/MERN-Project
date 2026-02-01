@@ -17,6 +17,7 @@ export const messageServices = {
             return responseData;
         } catch (error) {
             console.log(`Erorr: ${error}`)
+            throw error
         }
     },
 
@@ -31,6 +32,7 @@ export const messageServices = {
             return data
         } catch (error) {
             console.log(`Error: ${error.message}`)
+            throw error
         }
     },
 
@@ -49,6 +51,7 @@ export const messageServices = {
             return responseData
         } catch (error) {
             console.log(`Error: ${error.message}`)
+            throw error
         }
     },
 
@@ -67,6 +70,7 @@ export const messageServices = {
             return data
         } catch (error) {
             console.log(`Error: ${error.message}`)
+            throw error
         }
     },
     

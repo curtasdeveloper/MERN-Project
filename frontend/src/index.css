@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+    --color-customed-white: #f3f4f6;
+}
+
+@layer components {
+    
+}

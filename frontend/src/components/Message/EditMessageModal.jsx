@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { messageServices } from "../../services/messagesServices";
 
-function EditMessageModal({open, onClose, IdToEdit, text}) {
+function EditMessageModal({open, onClose, IdToEdit}) {
     const [ message, setMessage ] = useState("")
     const handleInputChange = (e) => {
         setMessage(e.target.value)
@@ -10,7 +10,6 @@ function EditMessageModal({open, onClose, IdToEdit, text}) {
         const isValid = validateText()
         if (isValid) {
             const response = await messageServices.updateMessage("hello-world", { messageId: IdToEdit, message })
-            text = message
             onClose()
             // Create a pop up if depends on the response.succcess
             console.log(response)
@@ -25,7 +24,7 @@ function EditMessageModal({open, onClose, IdToEdit, text}) {
     }
     return (
         <div className={`absolute top-0 left-0 w-full h-full flex items-center justify-center ${open ? "visible bg-zinc-200" : "invisible"}`}>
-            <div className="w-1/3 h-1/2 bg-zinc-300 flex flex-col items-center justify-center gap-2">
+            <div className="w-1/3 h-1/2 bg-customed-white flex flex-col items-center justify-center gap-2">
                 <h1>EDIT TEXT</h1>
                 <input placeholder="Type the text here..." className="p-1 border" type="text" onChange={handleInputChange} />
                 <div id="buttonContainer" className="flex gap-2 w-full justify-center">
